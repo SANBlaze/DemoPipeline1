@@ -7,21 +7,17 @@ import groovy.transform.Field
 
 node {
     script {
+        echo "!!! Edited in visual studio and pushed to git"
         if (fileExists('param_ipaddr.txt')){
             default_ipaddr = readFile file: 'param_ipaddr.txt'
             echo "param_ipaddr.txt exists with value=" + default_ipaddr
         } else {
             echo "param_ipaddr.txt does not exist"
         }
-//        echo "param ipaddr=" + params.ipaddr
-//        echo "default_ipaddr=" + default_ipaddr
     }
 }
 
 pipeline {
-//    environment {
-//        savedipaddr = "2.1.1.1"
-//   }
     agent any
     parameters {
 //      booleanParam(defaultValue: true, description: '', name: 'userFlag')
@@ -32,12 +28,6 @@ pipeline {
             description: "Example of a choice param"
         )
     }
-  //  def foo = "bar"
-  //  options {
-  //     paramList = [
-  //      [$class: 'StringParameterValue', name: 'repo_user', value: "${repo_user}"],
-  //  ]
-  //  }
     stages {
        stage('Load Params') {
             steps {
